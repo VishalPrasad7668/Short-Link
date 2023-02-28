@@ -1,0 +1,32 @@
+#titleHead {
+    margin: auto;
+    letter-spacing: 6px;
+    font-family: "Exo", sans-serif;
+    font-weight: bolder;
+}
+mat-toolbar{
+    background-color: rgba(0, 0, 0, 0.76);
+    color: #fff;
+}
+
+mat-card {
+    margin: auto;
+    text-align: center;
+}
+
+.container {
+    margin: 20px 20px 20px 20px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin: auto;
+}
+
+mat-card div {
+    margin: 10px 20px;
+}
+
+.center-label {
+    text-align: center;
+}

@@ -11,8 +11,8 @@ import {FormsModule}   from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http';
+import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
@@ -29,7 +29,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     MatToolbarModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NgTinyUrlService} from 'ng-tiny-url';
+import { NgTinyUrlService } from 'ng-tiny-url';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,34 +14,38 @@ export class DashboardComponent {
   tinyUrl = '';
   isLoaded = false;
   isCopied = false;
-  
-  constructor(private tinyyUrlService:NgTinyUrlService){}
 
-onSubmit(linkForm:any) {
-  if(linkForm.valid){
-    this.isLoaded = true;
-    this.tinyyUrlService.shorten(this.urlLink).subscribe((data)=>{
-      this.tinyUrl = data;
-      this.formSubmitted = true;
-      this.isLoaded = false;
-    },(error)=>{
-      alert('wrong input!!!');
-      this.isLoaded = false;
-    })
+  constructor(private tinyyUrlService: NgTinyUrlService) { }
+
+  onSubmit(linkForm: any) {
+    if (linkForm.valid) {
+      this.isLoaded = true;
+      this.tinyyUrlService.shorten(this.urlLink).subscribe((data) => {
+        this.tinyUrl = data;
+        this.formSubmitted = true;
+        this.isLoaded = false;
+      }, (error) => {
+        alert('wrong input!!!');
+        this.isLoaded = false;
+      })
+    }
   }
-}
 
 
-copyUrl(tinyUrlRef:any){
-  let createElement = document.createElement('input');
+  copyUrl(tinyUrlRef:any) {
+    let createElement: HTMLInputElement = document.createElement('input');
 
-  createElement.setAttribute('type','text');
-  createElement.setAttribute('value',tinyUrlRef.innerHtml);
-  createElement.select();
+    createElement.setAttribute('type', 'text');
+    createElement.setAttribute('value', tinyUrlRef);
+    createElement.select();
 
-}
+    console.log(createElement.value)
 
-  reset(){
+    navigator.clipboard.writeText(createElement.value)
+    this.isCopied = true;
+  }
+
+  reset() {
     this.urlLink = '';
     this.formSubmitted = false;
     this.isCopied = false;

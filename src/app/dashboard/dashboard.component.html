@@ -1,36 +1,43 @@
 <header>
-    <mat-toolbar color="primary">
+    <mat-toolbar>
         <mat-toolbar-row>
-            <span>SHORT LINK</span>
+            <span id="titleHead">SHORT LINK</span>
         </mat-toolbar-row>
     </mat-toolbar>
 </header>
 
 <div class="container">
-    <form #linkForm="ngForm" (ngSubmit)="onSubmit(linkForm)" *ngIf="!formSubmitted">
+    <mat-card>
 
-        <mat-form-field class="example-full-width">
-            <mat-label>Paste your URL</mat-label>
-            <input matInput type="url" [(ngModel)]="urlLink" required name="inputUrl" #inputUrl="ngModel">
-            <div [hidden]="(inputUrl.valid || inputUrl.pristine) && inputUrl.errors">
-                <p *ngIf="inputUrl.errors && inputUrl.errors?.['required']">Enter url</p>
+        <form #linkForm="ngForm" (ngSubmit)="onSubmit(linkForm)" *ngIf="!formSubmitted">
+
+            <mat-form-field appearance="fill">
+                <mat-label class="center-label">Paste your URL</mat-label>
+                <input matInput type="url" [(ngModel)]="urlLink" required name="inputUrl" #inputUrl="ngModel">
+                <div [hidden]="(inputUrl.valid || inputUrl.pristine) && inputUrl.errors">
+                    <p *ngIf="inputUrl.errors && inputUrl.errors?.['required']" style="color: red;">Enter valid url</p>
+                </div>
+            </mat-form-field>
+            <div>
+                <button mat-raised-button color="accent" type="submit" [disabled]="linkForm.invalid">{{!isLoaded ?
+                    'Generate' : 'Generating...'}}</button>
             </div>
-        </mat-form-field>
 
-        <button mat-raised-button color="accent" type="submit" [disabled]="linkForm.invalid">{{!isLoaded ? 'Generate' : 'Generating...'}}</button>
-        
-    </form>
+        </form>
 
-    <div *ngIf="formSubmitted">
-        <h2>New Url</h2>
-        <div>   
-            <p><a [href]="tinyUrl" #tinyUrlRef target="='_blank">{{tinyUrl}}</a></p>
+        <div *ngIf="formSubmitted">
+            <h2>New Url</h2>
+            <div>
+                <p><a [href]="tinyUrl" #tinyUrlRef target="='_blank">{{tinyUrl}}</a></p>
+            </div>
+
+            <div>
+                <button color="primary" style="margin-right: 20px;" mat-raised-button (click)="copyUrl(tinyUrlRef)">{{!isCopied ? 'copy' :
+                    'copied'}}</button>
+                <button color="accent" mat-raised-button type="reset" (click)="reset()">Reset</button>
+            </div>
         </div>
 
-        <div>
-            <button (click)="copyUrl(tinyUrlRef)">{{!isCopied ? 'copy' : 'copied'}}</button>
-            <button type="reset" (click)="reset()">Reset</button>
-        </div>
-    </div>
+    </mat-card>
 
 </div>
