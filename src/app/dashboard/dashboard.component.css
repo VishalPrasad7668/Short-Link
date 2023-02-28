@@ -30,3 +30,15 @@ mat-card div {
 .center-label {
     text-align: center;
 }
+#para p{
+    font-size:large;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 80px;
+    font-weight: bolder;
+}
+#para img{
+    float: left;
+}
+#para{
+    margin-top: 60px;
+}
